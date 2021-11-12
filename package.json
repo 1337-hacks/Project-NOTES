@@ -1,0 +1,29 @@
+{
+  "name": "project-notes",
+  "version": "1.0.0",
+  "description": "A personal note-taking and studying web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1337-hacks/Project-NOTES.git"
+  },
+  "author": "Elijah Nucum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1337-hacks/Project-NOTES/issues"
+  },
+  "homepage": "https://github.com/1337-hacks/Project-NOTES#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "validation": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
