@@ -35,7 +35,6 @@ footer p {
     position: fixed;
     right:5%;
     bottom:5%;
-    height:30px;
     z-index: 2;
 }
 
@@ -48,4 +47,9 @@ footer p {
     left: 0;
     background: rgba(50, 50, 50, 0.85);
     z-index: 1;
+}
+
+.note {
+    margin: 20px 20px;
+    float: left;
 }

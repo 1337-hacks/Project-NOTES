@@ -5,6 +5,8 @@ import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRou
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import React, { useState } from 'react';
 import CreateNote from './CreateNote';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 function App() {
 
@@ -18,15 +20,13 @@ function App() {
     else {
       setCreateNote(true);
     }
-
-    console.log(showCreateNote);
   }
 
   function AddNote(note, event) {
     setNotes((prevValues) => {
       return [...prevValues, note];
     });
-
+    setCreateNote(false);
     event.preventDefault();
   }
 
@@ -42,18 +42,20 @@ function App() {
     <div>
       <Header/>
 
+      <Container fluid>
       {notes.map((note, index) => (
         <Note
           key={index}
           id={index}
-          title={note.heading}
-          content={note.text}
+          heading={note.heading}
+          text={note.text}
           onClick={DeleteNote}
         />
       ))}
+      </Container>
 
-      <button className="addButton" onClick={ToggleCreateNote}>{showCreateNote ? <HighlightOffRoundedIcon/> : <AddCircleOutlineRoundedIcon/>}</button>
-      {showCreateNote ? <CreateNote/> : null}
+      <Button variant="link" className="addButton" onClick={ToggleCreateNote}>{showCreateNote ? <HighlightOffRoundedIcon fontSize="large"/> : <AddCircleOutlineRoundedIcon fontSize="large"/>}</Button>
+      {showCreateNote ? <CreateNote submitNote={AddNote}/> : null}
       <Footer/>
     </div>
   );
