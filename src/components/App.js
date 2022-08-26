@@ -6,27 +6,19 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import React, { useState } from 'react';
 import CreateNote from './CreateNote';
 import Container from 'react-bootstrap/Container';
+import VerticalNavbar from './VerticalNavbar';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 function App() {
 
-  const [showCreateNote, setCreateNote] = useState(false);
   const [notes, setNotes] = useState([]);
-
-  function ToggleCreateNote() {
-    if(showCreateNote) {
-      setCreateNote(false);
-    }
-    else {
-      setCreateNote(true);
-    }
-  }
 
   function AddNote(note, event) {
     setNotes((prevValues) => {
       return [...prevValues, note];
     });
-    setCreateNote(false);
     event.preventDefault();
   }
 
@@ -40,22 +32,27 @@ function App() {
 
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
 
-      <Container fluid>
-      {notes.map((note, index) => (
-        <Note
-          key={index}
-          id={index}
-          heading={note.heading}
-          text={note.text}
-          onClick={DeleteNote}
-        />
-      ))}
+      <VerticalNavbar/>
+
+      <Container fluid className="body">
+        {notes.map((note, index) => (
+          <Note
+            key={index}
+            id={index}
+            heading={note.heading}
+            text={note.text}
+            onClick={DeleteNote}
+          />
+        ))}
+
       </Container>
 
-      <Button variant="link" className="addButton" onClick={ToggleCreateNote}>{showCreateNote ? <HighlightOffRoundedIcon fontSize="large"/> : <AddCircleOutlineRoundedIcon fontSize="large"/>}</Button>
-      {showCreateNote ? <CreateNote submitNote={AddNote}/> : null}
+      <CreateNote
+        submitNote={AddNote}
+      />
+
       <Footer/>
     </div>
   );

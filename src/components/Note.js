@@ -11,7 +11,7 @@ function Note(props) {
   const [hover, setHover] = React.useState(false);
 
   return (
-    <Draggable>
+    <Draggable defaultPosition={{x: 10, y: 10}} bounds='parent'>
       <Card style={{ width: '18rem' }} className="note" onMouseOver={() =>setHover(true)} onMouseLeave={() =>setHover(false)}>
         <Card.Body>
           <Card.Title>{props.heading}</Card.Title>
