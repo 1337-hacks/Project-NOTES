@@ -19,7 +19,7 @@ header {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-footer {
+.footer {
     position: absolute;
     text-align: center;
     bottom: 0;
@@ -52,4 +52,19 @@ footer p {
 .note {
     margin: 20px 20px;
     float: left;
+}
+
+.body {
+    width: 100%;
+    min-height: 800px;
+    position: absolute;
+    background-color: antiquewhite;
+    overflow: auto;
+}
+
+.verticalNavbar {
+    position: fixed;
+    top: 50%;
+    left: 0px;
+    z-index: 2;
 }
