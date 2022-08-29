@@ -35,7 +35,7 @@ function CreateNote(props) {
 
     return (
     <>
-        <Button variant="primary" className="addButton" onClick={() => setCreateNote(true)}><AddCircleOutlineRoundedIcon fontSize="large"/></Button>
+        <Button variant="link" size="lg" className="addButton" onClick={() => setCreateNote(true)}><AddCircleOutlineRoundedIcon fontSize="large"/></Button>
 
         <Modal
             show={showCreateNote}

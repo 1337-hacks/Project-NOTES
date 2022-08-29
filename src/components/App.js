@@ -36,7 +36,7 @@ function App() {
 
       <VerticalNavbar/>
 
-      <Container fluid className="body">
+      <div className="body">
         {notes.map((note, index) => (
           <Note
             key={index}
@@ -47,7 +47,7 @@ function App() {
           />
         ))}
 
-      </Container>
+      </div>
 
       <CreateNote
         submitNote={AddNote}

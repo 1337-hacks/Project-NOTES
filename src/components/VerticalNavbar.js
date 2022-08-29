@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import MenuIcon from '@mui/icons-material/Menu';
+import Draggable from "react-draggable";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
+import Stack from 'react-bootstrap/Stack';
 
 function VerticalNavbar(props) {
 
@@ -11,17 +18,31 @@ function VerticalNavbar(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <>
-          <Button variant="primary" onClick={handleShow} className="me-2 verticalNavbar">
-            <NavigateNextIcon/>
-          </Button>
+      <>
+          <Draggable axis="y" bounds={"parent"}>
+            <Button variant="light" onClick={handleShow} className="me-2 verticalNavbar">
+              <MenuIcon/>
+            </Button>
+          </Draggable>
+
           <Offcanvas show={show} onHide={handleClose} scroll={true} backdrop={true}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Project:NOTES</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
+
+              <Stack gap={3}>
+                <ListGroup>
+                  <ListGroup.Item action href="#3">Add a Workspace</ListGroup.Item>
+                </ListGroup>
+                <ListGroup>
+                  <ListGroup.Item>My Workspaces</ListGroup.Item>
+                  <ListGroup.Item action href="#3">Map</ListGroup.Item>
+                  <ListGroup.Item action href="#3">Workspaces</ListGroup.Item>
+                  <ListGroup.Item action href="#3">Here!</ListGroup.Item>
+                </ListGroup>
+              </Stack>
+              
             </Offcanvas.Body>
           </Offcanvas>
         </>
