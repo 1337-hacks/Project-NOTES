@@ -1,4 +1,5 @@
 body {
+    padding: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -56,15 +57,13 @@ footer p {
 
 .body {
     width: 100%;
-    min-height: 800px;
-    position: absolute;
+    min-height: 1440px;
     background-color: antiquewhite;
-    overflow: auto;
 }
 
 .verticalNavbar {
-    position: fixed;
+    position: absolute;
     top: 50%;
-    left: 0px;
+    left: -5px;
     z-index: 2;
 }
