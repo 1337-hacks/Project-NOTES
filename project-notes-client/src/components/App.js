@@ -53,6 +53,13 @@ function App() {
         submitNote={AddNote}
       />
 
+      <form action="../../post" method="post" className="form">
+        <Button type="submit">Connect to React</Button>
+      </form>
+
+      
+      
+
       <Footer/>
     </div>
   );
