@@ -1,64 +1,61 @@
 import Header from './Header';
+import Workspace from './Workspace';
 import Footer from './Footer';
-import Note from './Note';
-import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import React, { useState } from 'react';
-import CreateNote from './CreateNote';
-import Container from 'react-bootstrap/Container';
 import VerticalNavbar from './VerticalNavbar';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
-  const [notes, setNotes] = useState([]);
+  const [workspace, setWorkspace] = useState([{
+    id: uuidv4(),
+    title: "New Workspace",
+    noteSet: []
+  }]);
 
-  function AddNote(note, event) {
-    setNotes((prevValues) => {
-      return [...prevValues, note];
+  function addWorkspace(workspace, event) {
+    setWorkspace((prevValues) => {
+      return [...prevValues, workspace];
     });
     event.preventDefault();
   }
 
-  function DeleteNote(noteId) {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((item, index) => {
-        return noteId !== index;
+  function deleteWorkspace(workspaceId) {
+    setWorkspace((prevWorkspaces) => {
+      return prevWorkspaces.filter((item, index) => {
+        return workspaceId !== index;
       });
     });
+  }
+
+  function updateWorkspace(workspaceid, newNoteSet) {
+    const newState = workspace.map(workspaceObj => {
+      if (workspaceObj.id === workspaceid) {
+        return {...workspaceObj, noteSet: newNoteSet};
+      }
+      return workspaceObj;
+    });
+    
+    setWorkspace(newState);
   }
 
   return (
     <div>
       {/* <Header/> */}
 
-      <VerticalNavbar/>
+      <VerticalNavbar workspaces={workspace} submitWorkspace={addWorkspace}/>
 
-      <div className="body">
-        {notes.map((note, index) => (
-          <Note
-            key={index}
-            id={index}
-            heading={note.heading}
-            text={note.text}
-            onClick={DeleteNote}
-          />
-        ))}
-
-      </div>
-
-      <CreateNote
-        submitNote={AddNote}
+      <Workspace 
+        currentWorkspace={workspace[0]}
+        updateWorkspace={updateWorkspace}
       />
 
       <form action="../../post" method="post" className="form">
         <Button type="submit">Connect to React</Button>
       </form>
 
-      
-      
+      <Button onClick={() => console.log(workspace)}>Click me!</Button>
 
       <Footer/>
     </div>
