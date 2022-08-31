@@ -40,9 +40,6 @@ function App() {
   }
 
   function deleteWorkspace(workspaceId) {
-
-    console.log("Delete Workspace");
-
     setWorkspace((prevWorkspaces) => {
       return prevWorkspaces.filter((item, index) => {
         return workspaceId !== index;
@@ -50,11 +47,10 @@ function App() {
     });
   }
 
-  function updateWorkspace(currentWorkspace) {
+  function updateWorkspace(workspaceid, newNoteSet) {
     const newState = workspace.map(workspaceObj => {
-      if (workspaceObj.id === currentWorkspace.id) {
-        console.log("Entered!");
-        return {...workspaceObj, noteSet: currentWorkspace.noteSet};
+      if (workspaceObj.id === workspaceid) {
+        return {...workspaceObj, noteSet: newNoteSet};
       }
       return workspaceObj;
     });

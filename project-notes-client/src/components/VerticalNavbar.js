@@ -11,39 +11,30 @@ function VerticalNavbar(props) {
 
     const [showBar, setShowBar] = useState(false);
 
-    function handleCloseBar() {setShowBar(false)};
-    function handleShowBar() {setShowBar(true)};
-
-    function openWorkspaceFunc(id) {
-      handleCloseBar();
-      props.openWorkspace(id);
-    }
+    const handleCloseBar = () => setShowBar(false);
+    const handleShowBar = () => setShowBar(true);
 
     return (
       <>
-        {/* <Draggable axis="y" bounds={"parent"}> */}
-        <div className="verticalNavbar">
-          <Button variant="light" onClick={() => handleShowBar()} className="me-2 verticalNavbar">
+        <Draggable axis="y" bounds={"parent"}>
+          <Button variant="light" onClick={handleShowBar} className="me-2 verticalNavbar">
             <MenuIcon/>
           </Button>
-        </div>
-        {/* </Draggable> */}
+        </Draggable>
 
-        <Offcanvas show={showBar} onHide={() => handleCloseBar()} scroll={true} backdrop={true}>
-          <Offcanvas.Header closeButton className="dark">
+        <Offcanvas show={showBar} onHide={handleCloseBar} scroll={true} backdrop={true}>
+          <Offcanvas.Header closeButton>
             <Offcanvas.Title>Project:NOTES</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body className="dark">
+          <Offcanvas.Body>
 
             <Stack gap={3}>
               <CreateWorkspace submitWorkspace={props.submitWorkspace}/>
-
-              <Offcanvas.Title>My Workspaces</Offcanvas.Title>
               <ListGroup>
-                {/* <ListGroup.Item variant="primary">My Workspaces</ListGroup.Item> */}
+                <ListGroup.Item>My Workspaces</ListGroup.Item>
 
                 {props.workspaces.map((workspaces, index) => (
-                    <ListGroup.Item action onClick={() => openWorkspaceFunc(workspaces.id)} key={workspaces.id} variant="dark">{workspaces.title}</ListGroup.Item>
+                    <ListGroup.Item action href={workspaces.title} key={index} id={index}>{workspaces.title}</ListGroup.Item>
                 ))}
 
               </ListGroup>
