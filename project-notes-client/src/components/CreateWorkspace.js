@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import { v4 as uuidv4 } from 'uuid';
+import Stack from 'react-bootstrap/Stack';
 
 function CreateWorkspace(props) {
 
@@ -59,36 +60,37 @@ function CreateWorkspace(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form 
-                    onSubmit={(formEvent) => {
-                        if(workspace.title === "") {
-                            setError(true)
-                            formEvent.preventDefault();
+                    <Stack gap={3}>
+                        <Form 
+                        onSubmit={(formEvent) => {
+                            if(workspace.title === "") {
+                                setError(true)
+                                formEvent.preventDefault();
+                            }
+                            else {
+                                props.submitWorkspace(workspace, formEvent);
+                                handleCloseAddWS();
+                            }
+                        }}
+                        >
+                            <Form.Group className="mb-3" controlId="formNoteHeading">
+                                <Form.Control type="text" placeholder="Enter Workspace Title" onChange={changeText} name="title" value={workspace.title} />
+                            </Form.Group>
+
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
+
+                        {
+                        error && <Alert variant="warning" onClose={() => setError(false)} dismissible>
+                            <Alert.Heading>No name..?</Alert.Heading>
+                            <p>
+                            Please enter a name for your workspace.
+                            </p>
+                        </Alert>
                         }
-                        else {
-                            props.submitWorkspace(workspace, formEvent);
-                            handleCloseAddWS();
-                        }
-                    }}
-                    >
-                        <Form.Group className="mb-3" controlId="formNoteHeading">
-                            <Form.Control type="text" placeholder="Enter Workspace Title" onChange={changeText} name="title" value={workspace.title} />
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-
-                    {
-                    error && <Alert variant="warning" onClose={() => setError(false)} dismissible>
-                        <Alert.Heading>Your note is incomplete!</Alert.Heading>
-                        <p>
-                        Please complete your note and try again.
-                        </p>
-                    </Alert>
-                    }
-
+                    </Stack>
                 </Modal.Body>
             </Modal>
         </>

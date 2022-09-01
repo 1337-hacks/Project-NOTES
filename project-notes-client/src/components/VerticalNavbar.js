@@ -34,7 +34,7 @@ function VerticalNavbar(props) {
                 <ListGroup.Item>My Workspaces</ListGroup.Item>
 
                 {props.workspaces.map((workspaces, index) => (
-                    <ListGroup.Item action href={workspaces.title} key={index} id={index}>{workspaces.title}</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => props.openWorkspace(workspaces.id)} key={workspaces.id}>{workspaces.title}</ListGroup.Item>
                 ))}
 
               </ListGroup>

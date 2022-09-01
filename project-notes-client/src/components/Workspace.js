@@ -5,16 +5,16 @@ import Note from './Note';
 
 function Workspace(props) {
 
-    const currentWorkspace = props.currentWorkspace;
+    const [currentWorkspace, setCurrentWorkspace] = useState(props.currentWorkspace);
     const [notes, setNotes] = useState([]);
 
     function addNote(note, event) {
-      setNotes((prevValues) => {
-        return [...prevValues, note];
+      event.preventDefault(); 
+      setCurrentWorkspace((prevValues)=>{
+        return {...prevValues, noteSet: currentWorkspace.noteSet.concat(note)}
       });
       
-      event.preventDefault();
-      props.updateWorkspace(currentWorkspace.id, notes);
+      props.updateWorkspace(currentWorkspace);
     }
   
     function deleteNote(noteId) {
@@ -27,12 +27,13 @@ function Workspace(props) {
       props.updateWorkspace(currentWorkspace.id, notes);
     }
 
+    console.log("Inside currentWorkspace Component: ", currentWorkspace);
 
     return (
         <>
             <div className="body">
                 <h4>{currentWorkspace.title}</h4>
-                {notes.map((note, index) => (
+                {currentWorkspace.noteSet.map((note, index) => (
                     <Note
                         key={index}
                         id={index}

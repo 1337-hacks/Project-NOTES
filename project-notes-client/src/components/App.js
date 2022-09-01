@@ -1,10 +1,11 @@
 import Header from './Header';
 import Workspace from './Workspace';
 import Footer from './Footer';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import VerticalNavbar from './VerticalNavbar';
 import Button from 'react-bootstrap/Button';
 import { v4 as uuidv4 } from 'uuid';
+import { unmountComponentAtNode, render } from "react-dom";
 
 function App() {
 
@@ -14,11 +15,18 @@ function App() {
     noteSet: []
   }]);
 
+  const [currentWorkspace, setCurrentWorkspace] = useState(workspace[0].id);
+  const [renderWorkspace, setRenderWorkspace] = useState(true);
+
+  useEffect(()=> {
+    console.log({workspace});
+  }, [workspace]);
+
   function addWorkspace(workspace, event) {
+    event.preventDefault();
     setWorkspace((prevValues) => {
       return [...prevValues, workspace];
     });
-    event.preventDefault();
   }
 
   function deleteWorkspace(workspaceId) {
@@ -29,33 +37,49 @@ function App() {
     });
   }
 
-  function updateWorkspace(workspaceid, newNoteSet) {
+  function updateWorkspace(currentWorkspace) {
     const newState = workspace.map(workspaceObj => {
-      if (workspaceObj.id === workspaceid) {
-        return {...workspaceObj, noteSet: newNoteSet};
+      if (workspaceObj.id === currentWorkspace.id) {
+        console.log("Entered!");
+        return {...workspaceObj, noteSet: currentWorkspace.noteSet};
       }
       return workspaceObj;
     });
     
-    setWorkspace(newState);
+    console.log({newState, currentWorkspace});
+    setWorkspace(() => newState);
   }
 
+  function openWorkspace(workspaceId) {
+    console.log("Hello world!");
+    setRenderWorkspace(false);
+    setCurrentWorkspace(workspaceId);
+    // setRenderWorkspace(true);
+  }
+  
   return (
     <div>
       {/* <Header/> */}
 
-      <VerticalNavbar workspaces={workspace} submitWorkspace={addWorkspace}/>
+      <VerticalNavbar workspaces={workspace} openWorkspace={openWorkspace} submitWorkspace={addWorkspace}/>
 
-      <Workspace 
-        currentWorkspace={workspace[0]}
-        updateWorkspace={updateWorkspace}
-      />
+      {renderWorkspace ? 
+        <Workspace 
+          currentWorkspace={workspace.find((obj)=> obj.id === currentWorkspace)}
+          updateWorkspace={updateWorkspace}
+          id={workspace.find((obj)=> obj.id === currentWorkspace)}
+        /> 
+        : "loading screen"
+      }
+      
 
       <form action="../../post" method="post" className="form">
         <Button type="submit">Connect to React</Button>
       </form>
 
-      <Button onClick={() => console.log(workspace)}>Click me!</Button>
+      <Button onClick={() => console.log(workspace)}>View Workspaces</Button>
+      <Button onClick={() => console.log(currentWorkspace)}>View current workspace</Button>
+      <Button onClick={() => setRenderWorkspace(true)}>Render workspace</Button>
 
       <Footer/>
     </div>

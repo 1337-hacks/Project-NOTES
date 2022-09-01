@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import Stack from 'react-bootstrap/Stack';
 
 function CreateNote(props) {
 
@@ -49,38 +50,40 @@ function CreateNote(props) {
                     <Modal.Title>Take a note...</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form 
-                        onSubmit={(formEvent) => {
-                            if(note.heading === "" || note.text === "") {
-                                setError(true)
-                                formEvent.preventDefault();
-                            }
-                            else {
-                                props.submitNote(note, formEvent);
-                                setCreateNote(false);
-                            }
-                        }}
-                    >
-                        <Form.Group className="mb-3" controlId="formNoteHeading">
-                            <Form.Control type="text" placeholder="Enter Heading" onChange={changeText} name="heading" value={note.heading} />
-                        </Form.Group>
+                    <Stack gap={3}>
+                        <Form 
+                            onSubmit={(formEvent) => {
+                                if(note.heading === "" || note.text === "") {
+                                    setError(true)
+                                    formEvent.preventDefault();
+                                }
+                                else {
+                                    props.submitNote(note, formEvent);
+                                    setCreateNote(false);
+                                }
+                            }}
+                        >
+                            <Form.Group className="mb-3" controlId="formNoteHeading">
+                                <Form.Control type="text" placeholder="Enter Heading" onChange={changeText} name="heading" value={note.heading} />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formNoteText">
-                            <Form.Control as="textarea" rows={3} placeholder="Enter Text" onChange={changeText} name="text" value={note.text} />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
+                            <Form.Group className="mb-3" controlId="formNoteText">
+                                <Form.Control as="textarea" rows={3} placeholder="Enter Text" onChange={changeText} name="text" value={note.text} />
+                            </Form.Group>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Form>
 
-                    {
-                        error && <Alert variant="warning" onClose={() => setError(false)} dismissible>
-                            <Alert.Heading>Your note is incomplete!</Alert.Heading>
-                            <p>
-                                Please complete your note and try again.
-                            </p>
-                        </Alert>
-                    }
+                        {
+                            error && <Alert variant="warning" onClose={() => setError(false)} dismissible>
+                                <Alert.Heading>Your note is incomplete!</Alert.Heading>
+                                <p>
+                                    Please complete your note and try again.
+                                </p>
+                            </Alert>
+                        }
+                    </Stack>
                 </Modal.Body>
             </Modal>
         </>
