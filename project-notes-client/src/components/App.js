@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react';
 import VerticalNavbar from './VerticalNavbar';
 import Button from 'react-bootstrap/Button';
 import { v4 as uuidv4 } from 'uuid';
-import { unmountComponentAtNode, render } from "react-dom";
+import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/esm/Container';
 
 function App() {
 
@@ -16,11 +17,14 @@ function App() {
   }]);
 
   const [currentWorkspace, setCurrentWorkspace] = useState(workspace[0].id);
+  
   const [renderWorkspace, setRenderWorkspace] = useState(true);
-
+  
   useEffect(()=> {
-    console.log({workspace});
-  }, [workspace]);
+    setTimeout(()=> {
+      setRenderWorkspace(true);
+    }, 1000);
+  }, [renderWorkspace]);
 
   function addWorkspace(workspace, event) {
     event.preventDefault();
@@ -69,10 +73,18 @@ function App() {
           updateWorkspace={updateWorkspace}
           id={workspace.find((obj)=> obj.id === currentWorkspace)}
         /> 
-        : "loading screen"
+        : 
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
       }
       
-
       <form action="../../post" method="post" className="form">
         <Button type="submit">Connect to React</Button>
       </form>

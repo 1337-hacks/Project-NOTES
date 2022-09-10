@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CreateNote from './CreateNote';
 import Note from './Note';
 
@@ -8,13 +8,15 @@ function Workspace(props) {
     const [currentWorkspace, setCurrentWorkspace] = useState(props.currentWorkspace);
     const [notes, setNotes] = useState([]);
 
+    useEffect(()=> {
+      props.updateWorkspace(currentWorkspace);
+    }, [currentWorkspace]);
+
     function addNote(note, event) {
       event.preventDefault(); 
       setCurrentWorkspace((prevValues)=>{
         return {...prevValues, noteSet: currentWorkspace.noteSet.concat(note)}
       });
-      
-      props.updateWorkspace(currentWorkspace);
     }
   
     function deleteNote(noteId) {
