@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -11,18 +11,23 @@ function VerticalNavbar(props) {
 
     const [showBar, setShowBar] = useState(false);
 
-    const handleCloseBar = () => setShowBar(false);
-    const handleShowBar = () => setShowBar(true);
+    function handleCloseBar() {setShowBar(false)};
+    function handleShowBar() {setShowBar(true)};
+
+    function openWorkspaceFunc(id) {
+      handleCloseBar();
+      props.openWorkspace(id);
+    }
 
     return (
       <>
         <Draggable axis="y" bounds={"parent"}>
-          <Button variant="light" onClick={handleShowBar} className="me-2 verticalNavbar">
+          <Button variant="light" onClick={() => handleShowBar()} className="me-2 verticalNavbar">
             <MenuIcon/>
           </Button>
         </Draggable>
 
-        <Offcanvas show={showBar} onHide={handleCloseBar} scroll={true} backdrop={true}>
+        <Offcanvas show={showBar} onHide={() => handleCloseBar()} scroll={true} backdrop={true}>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Project:NOTES</Offcanvas.Title>
           </Offcanvas.Header>
@@ -34,7 +39,7 @@ function VerticalNavbar(props) {
                 <ListGroup.Item>My Workspaces</ListGroup.Item>
 
                 {props.workspaces.map((workspaces, index) => (
-                    <ListGroup.Item action href={workspaces.title} key={index} id={index}>{workspaces.title}</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => openWorkspaceFunc(workspaces.id)} key={workspaces.id}>{workspaces.title}</ListGroup.Item>
                 ))}
 
               </ListGroup>
