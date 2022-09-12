@@ -42,12 +42,10 @@ function CreateWorkspace(props) {
 
     return (
         <>
-            <div className="d-grid gap-2">
-                <Button onClick={handleShowAddWS} variant="success">
-                    Add a Workspace
-                </Button>
-            </div>
-            
+            <ListGroup>
+                <ListGroup.Item action onClick={handleShowAddWS} variant="success">Add a Workspace</ListGroup.Item>
+            </ListGroup>
+
             <Modal
                 show={showAddWS}
                 onHide={handleCloseAddWS}

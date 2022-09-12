@@ -56,14 +56,38 @@ footer p {
 }
 
 .body {
+    position: relative;
     width: 100%;
-    min-height: 1440px;
-    background-color: antiquewhite;
+    height: 1440px;
+    background-color: rgb(250, 235, 215);
+}
+
+.loadingBody {
+    padding: 20%;
+    text-align: center;
 }
 
 .verticalNavbar {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: -5px;
     z-index: 2;
 }
+
+.workspaceHeader {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgb(184, 172, 157);
+}
+
+.dark {
+    background-color: #292929;
+    color: rgb(146, 155, 163);
+}
+
+#dark-form .form-control {
+    background-color: #292929;
+    border-color: #202020;
+    color:rgb(146, 155, 163);
+ }

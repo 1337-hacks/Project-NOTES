@@ -16,7 +16,8 @@ function App() {
     noteSet: []
   }]);
 
-  const [currentWorkspace, setCurrentWorkspace] = useState(workspace[0].id);
+  const [currentWS, setCurrentWS] = useState(workspace[0].id);
+  const [currentWSName, setCurrentWSName]  = useState(workspace[0].title);
   
   const [renderWorkspace, setRenderWorkspace] = useState(true);
   
@@ -25,6 +26,11 @@ function App() {
       setRenderWorkspace(true);
     }, 1000);
   }, [renderWorkspace]);
+
+  useEffect(()=> {
+    const WS = workspace.findIndex((obj)=> obj.id === currentWS);
+    setCurrentWSName(workspace[WS].title);
+  }, [currentWS])
 
   function addWorkspace(workspace, event) {
     event.preventDefault();
@@ -62,13 +68,7 @@ function App() {
   
   return (
     <div>
-      <Header 
-        currentWorkspace={currentWSName} 
-        workspaces={workspace} 
-        openWorkspace={openWorkspace} 
-        submitWorkspace={addWorkspace} 
-        deleteWorkspace={deleteWorkspace}
-      />
+      <Header currentWorkspace={currentWSName} workspaces={workspace} openWorkspace={openWorkspace} submitWorkspace={addWorkspace}/>
       
       {renderWorkspace ? 
         <Workspace 
@@ -77,12 +77,8 @@ function App() {
           id={workspace.find((obj)=> obj.id === currentWS)}
         /> 
         : 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          <Spinner animation="border" role="status">
+        <div className="body loadingBody">
+          <Spinner animation="border" role="status" className="loadingSpinner">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </div>
