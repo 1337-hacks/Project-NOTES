@@ -46,12 +46,10 @@ function CreateNote(props) {
                 centered
                 onExited={() => clearNote()}
                 >
-                <Modal.Header closeButton>
-                    <Modal.Title>Take a note...</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="dark">
                     <Stack gap={3}>
                         <Form 
+                            id="dark-form"
                             onSubmit={(formEvent) => {
                                 if(note.heading === "" || note.text === "") {
                                     setError(true)
@@ -70,9 +68,14 @@ function CreateNote(props) {
                             <Form.Group className="mb-3" controlId="formNoteText">
                                 <Form.Control as="textarea" rows={3} placeholder="Enter Text" onChange={changeText} name="text" value={note.text} />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Stack direction="horizontal" gap={2}>
+                                <Button variant="success" type="submit">
+                                    Submit
+                                </Button>
+                                <Button variant="danger" onClick={() => setCreateNote(false)}>
+                                    Close
+                                </Button>
+                            </Stack>
                         </Form>
 
                         {

@@ -43,7 +43,7 @@ function CreateWorkspace(props) {
     return (
         <>
             <ListGroup>
-                <ListGroup.Item action onClick={handleShowAddWS}>Add a Workspace</ListGroup.Item>
+                <ListGroup.Item action onClick={handleShowAddWS} variant="success">Add a Workspace</ListGroup.Item>
             </ListGroup>
 
             <Modal
@@ -54,32 +54,33 @@ function CreateWorkspace(props) {
                 centered
                 onExited={() => clearTitle()}
             >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                    Add a Workspace
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="dark">
                     <Stack gap={3}>
-                        <Form 
-                        onSubmit={(formEvent) => {
-                            if(workspace.title === "") {
-                                setError(true)
-                                formEvent.preventDefault();
-                            }
-                            else {
-                                props.submitWorkspace(workspace, formEvent);
-                                handleCloseAddWS();
-                            }
-                        }}
+                        <Form
+                            id="dark-form"
+                            onSubmit={(formEvent) => {
+                                if(workspace.title === "") {
+                                    setError(true)
+                                    formEvent.preventDefault();
+                                }
+                                else {
+                                    props.submitWorkspace(workspace, formEvent);
+                                    handleCloseAddWS();
+                                }
+                            }}
                         >
                             <Form.Group className="mb-3" controlId="formNoteHeading">
                                 <Form.Control type="text" placeholder="Enter Workspace Title" onChange={changeText} name="title" value={workspace.title} />
                             </Form.Group>
 
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Stack direction="horizontal" gap={2}>
+                                <Button variant="success" type="submit">
+                                    Add Workspace
+                                </Button>
+                                <Button variant="danger" onClick={handleCloseAddWS}>
+                                    Close
+                                </Button>
+                            </Stack>
                         </Form>
 
                         {

@@ -16,7 +16,8 @@ function App() {
     noteSet: []
   }]);
 
-  const [currentWorkspace, setCurrentWorkspace] = useState(workspace[0].id);
+  const [currentWS, setCurrentWS] = useState(workspace[0].id);
+  const [currentWSName, setCurrentWSName]  = useState(workspace[0].title);
   
   const [renderWorkspace, setRenderWorkspace] = useState(true);
   
@@ -25,6 +26,11 @@ function App() {
       setRenderWorkspace(true);
     }, 1000);
   }, [renderWorkspace]);
+
+  useEffect(()=> {
+    const WS = workspace.findIndex((obj)=> obj.id === currentWS);
+    setCurrentWSName(workspace[WS].title);
+  }, [currentWS])
 
   function addWorkspace(workspace, event) {
     event.preventDefault();
@@ -57,29 +63,23 @@ function App() {
   function openWorkspace(workspaceId) {
     console.log("Hello world!");
     setRenderWorkspace(false);
-    setCurrentWorkspace(workspaceId);
+    setCurrentWS(workspaceId);
     // setRenderWorkspace(true);
   }
   
   return (
     <div>
-      {/* <Header/> */}
-
-      <VerticalNavbar workspaces={workspace} openWorkspace={openWorkspace} submitWorkspace={addWorkspace}/>
-
+      <Header currentWorkspace={currentWSName} workspaces={workspace} openWorkspace={openWorkspace} submitWorkspace={addWorkspace}/>
+      
       {renderWorkspace ? 
         <Workspace 
-          currentWorkspace={workspace.find((obj)=> obj.id === currentWorkspace)}
+          currentWorkspace={workspace.find((obj)=> obj.id === currentWS)}
           updateWorkspace={updateWorkspace}
-          id={workspace.find((obj)=> obj.id === currentWorkspace)}
+          id={workspace.find((obj)=> obj.id === currentWS)}
         /> 
         : 
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          <Spinner animation="border" role="status">
+        <div className="body loadingBody">
+          <Spinner animation="border" role="status" className="loadingSpinner">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
         </div>
@@ -90,7 +90,7 @@ function App() {
       </form>
 
       <Button onClick={() => console.log(workspace)}>View Workspaces</Button>
-      <Button onClick={() => console.log(currentWorkspace)}>View current workspace</Button>
+      <Button onClick={() => console.log(currentWS)}>View current workspace</Button>
       <Button onClick={() => setRenderWorkspace(true)}>Render workspace</Button>
 
       <Footer/>

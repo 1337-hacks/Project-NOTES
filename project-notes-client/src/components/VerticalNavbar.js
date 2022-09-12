@@ -21,25 +21,29 @@ function VerticalNavbar(props) {
 
     return (
       <>
-        <Draggable axis="y" bounds={"parent"}>
+        {/* <Draggable axis="y" bounds={"parent"}> */}
+        <div className="verticalNavbar">
           <Button variant="light" onClick={() => handleShowBar()} className="me-2 verticalNavbar">
             <MenuIcon/>
           </Button>
-        </Draggable>
+        </div>
+        {/* </Draggable> */}
 
         <Offcanvas show={showBar} onHide={() => handleCloseBar()} scroll={true} backdrop={true}>
-          <Offcanvas.Header closeButton>
+          <Offcanvas.Header closeButton className="dark">
             <Offcanvas.Title>Project:NOTES</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body className="dark">
 
             <Stack gap={3}>
               <CreateWorkspace submitWorkspace={props.submitWorkspace}/>
+
+              <Offcanvas.Title>My Workspaces</Offcanvas.Title>
               <ListGroup>
-                <ListGroup.Item>My Workspaces</ListGroup.Item>
+                {/* <ListGroup.Item variant="primary">My Workspaces</ListGroup.Item> */}
 
                 {props.workspaces.map((workspaces, index) => (
-                    <ListGroup.Item action onClick={() => openWorkspaceFunc(workspaces.id)} key={workspaces.id}>{workspaces.title}</ListGroup.Item>
+                    <ListGroup.Item action onClick={() => openWorkspaceFunc(workspaces.id)} key={workspaces.id} variant="dark">{workspaces.title}</ListGroup.Item>
                 ))}
 
               </ListGroup>

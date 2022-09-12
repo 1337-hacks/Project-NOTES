@@ -34,7 +34,6 @@ function Workspace(props) {
     return (
         <>
             <div className="body">
-                <h4>{currentWorkspace.title}</h4>
                 {currentWorkspace.noteSet.map((note, index) => (
                     <Note
                         key={index}
