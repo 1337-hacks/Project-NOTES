@@ -1,14 +1,24 @@
 # Project:NOTES
 
-Hi! This ReadMe page is under construction. Stick around here for updates in the future!
+This is my very first personal project. Project:NOTES is a simple notetaking app that works similarly to Google Keep and Windows Sticky Notes.
 
-## Heading 2
+### Features
 
-Sample Text
+- Add, *edit (to be completed)* and delete notes easily
+- Drag notes around and rearrange to your preferences
+- Create workspaces to work on different groups of notes
 
-### Heading 3
+### Technologies used
 
-Sample Text
+- MERN Stack (MongoDB, Express, React, Node)
+- React-Bootstrap
+- MUI (Icons)
 
-**Another sample text...**
+### To-do
+
+- ~~React useState update delay bug to fix~~
+- ~~Update Navbar and Offcanvas design~~
+- Fix note delete function
+- Add note edit function
+- Save notes and workspaces to MongoDB
 
