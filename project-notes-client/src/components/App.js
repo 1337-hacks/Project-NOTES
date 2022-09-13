@@ -40,6 +40,7 @@ function App() {
   }
 
   function deleteWorkspace(workspaceId) {
+
     setWorkspace((prevWorkspaces) => {
       return prevWorkspaces.filter((item, index) => {
         return workspaceId !== index;
@@ -69,7 +70,13 @@ function App() {
   
   return (
     <div>
-      <Header currentWorkspace={currentWSName} workspaces={workspace} openWorkspace={openWorkspace} submitWorkspace={addWorkspace}/>
+      <Header 
+        currentWorkspace={currentWSName} 
+        workspaces={workspace} 
+        openWorkspace={openWorkspace} 
+        submitWorkspace={addWorkspace} 
+        deleteWorkspace={deleteWorkspace}
+      />
       
       {renderWorkspace ? 
         <Workspace 

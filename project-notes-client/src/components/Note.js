@@ -21,8 +21,8 @@ function Note(props) {
           hover && 
             <ListGroup className="list-group-flush">
               <ListGroup.Item>
-                <Button variant="link"><EditIcon/></Button>
-                <Button variant="link" onClick={() => props.onClick(props.id)}><DeleteRoundedIcon/></Button>
+                <Button variant="link" onClick={() => props.edit(props.id)}><EditIcon/></Button>
+                <Button variant="link" onClick={() => props.delete(props.id)}><DeleteRoundedIcon/></Button>
               </ListGroup.Item>
             </ListGroup>
         }

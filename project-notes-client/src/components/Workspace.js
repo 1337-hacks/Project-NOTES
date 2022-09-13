@@ -18,15 +18,17 @@ function Workspace(props) {
         return {...prevValues, noteSet: currentWorkspace.noteSet.concat(note)}
       });
     }
+
+    function editNote(noteId) {
+      console.log("To be completed!");
+    }
   
     function deleteNote(noteId) {
-      setNotes((prevNotes) => {
-        return prevNotes.filter((item, index) => {
-          return noteId !== index;
-        });
-      });
+      const set = currentWorkspace.noteSet;
 
-      props.updateWorkspace(currentWorkspace.id, notes);
+      setCurrentWorkspace((prevValues)=> {
+        return {...prevValues, noteSet: set.filter((note, index) => noteId !== index)}
+      });
     }
 
     console.log("Inside currentWorkspace Component: ", currentWorkspace);
@@ -40,7 +42,8 @@ function Workspace(props) {
                         id={index}
                         heading={note.heading}
                         text={note.text}
-                        onClick={deleteNote}
+                        edit={editNote}
+                        delete={deleteNote}
                     />
                 ))}
             </div>

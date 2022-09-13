@@ -90,4 +90,12 @@ footer p {
     background-color: #292929;
     border-color: #202020;
     color:rgb(146, 155, 163);
- }
+}
+
+#ws-btn {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#ws-dropdown {
+    border-radius: 0px 5px 5px 0px;
+}
