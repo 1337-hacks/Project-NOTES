@@ -16,21 +16,24 @@ function Note(props) {
 
   return (
     <Draggable defaultPosition={{x: 10, y: 10}} bounds="parent">
-      <Card style={{ width: '18rem' }} className="note" onMouseOver={() =>setHover(true)} onMouseLeave={() =>setHover(false)}>
-        <Card.Body>
-          <Card.Title>{props.heading}</Card.Title>
-          <Card.Text>{props.text}</Card.Text>
-        </Card.Body>
-        {
-          hover && 
+      <Container style={{ width: '18rem' , backgroundColor: "#FFFFFF"}} className="note" onMouseOver={() =>setHover(true)} onMouseLeave={() =>setHover(false)}>
+        <Row>
+          <Col>
+            <h5>{props.heading}</h5>
+            <p>{props.text}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <ListGroup className="list-group-flush">
               <ListGroup.Item>
                 <Button variant="link" onClick={() => props.edit(props.id)}><EditIcon/></Button>
                 <Button variant="link" onClick={() => props.delete(props.id)}><DeleteRoundedIcon/></Button>
               </ListGroup.Item>
             </ListGroup>
-        }
-      </Card>
+          </Col>
+        </Row>
+      </Container>
     </Draggable>
   );
 }

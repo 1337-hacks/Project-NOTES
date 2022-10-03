@@ -41,6 +41,8 @@ function App() {
 
   function deleteWorkspace(workspaceId) {
 
+    console.log("Delete Workspace");
+
     setWorkspace((prevWorkspaces) => {
       return prevWorkspaces.filter((item, index) => {
         return workspaceId !== index;
