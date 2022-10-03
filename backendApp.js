@@ -1,28 +1,15 @@
-// app.js
-
-const express = require('express');
-const connectDB = require('./config/db');
-var cors = require('cors');
-
-// routes
-const books = require('./routes/api/books');
-
+const express = require("express");
 const app = express();
+  
+app.get("/", (req, res) => {
+    console.log("Hello World!");
+});
 
-// Connect Database
-connectDB();
+app.post("/post", (req, res) => {
+    console.log("Connected to React");
+    res.redirect("/");
+});
+  
+const PORT = process.env.PORT || 8080;
 
-// cors
-app.use(cors({ origin: true, credentials: true }));
-
-// Init Middleware
-app.use(express.json({ extended: false }));
-
-app.get('/', (req, res) => res.send('Hello world!'));
-
-// use Routes
-app.use('/api/books', books);
-
-const port = process.env.PORT || 8082;
-
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(PORT, console.log(`Server started on port ${PORT}`));

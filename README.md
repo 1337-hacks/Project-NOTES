@@ -1,7 +1,24 @@
-# Project-NOTES
-A personal note-taking and study web app
+# Project:NOTES
 
-**Code Structure and Info**
-The web app uses the MERN stack and is based off of code from the following tutorial: https://blog.logrocket.com/mern-stack-tutorial/. The code is to be modified
-for note-taking and additional features will be implemented in the future.
-The backend is found at the root and the frontend is found in the _project_notes_client_ folder.
+This is my very first personal project. Project:NOTES is a simple notetaking app that works similarly to Google Keep and Windows Sticky Notes.
+
+### Features
+
+- Add, *edit (to be completed)* and delete notes easily
+- Drag notes around and rearrange to your preferences
+- Create workspaces to work on different groups of notes
+
+### Technologies used
+
+- MERN Stack (MongoDB, Express, React, Node)
+- React-Bootstrap
+- MUI (Icons)
+
+### To-do
+
+- ~~React useState update delay bug to fix~~
+- ~~Update Navbar and Offcanvas design~~
+- Fix note delete function
+- Add note edit function
+- Save notes and workspaces to MongoDB
+
