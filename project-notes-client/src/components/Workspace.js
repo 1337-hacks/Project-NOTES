@@ -5,50 +5,50 @@ import Note from './Note';
 
 function Workspace(props) {
 
-    const currentWorkspace = props.currentWorkspace;
-    const [notes, setNotes] = useState([]);
+  const [currentWorkspace, setCurrentWorkspace] = useState(props.currentWorkspace);
 
-    useEffect(()=> {
-      props.updateWorkspace(currentWorkspace);
-    }, [currentWorkspace]);
+  useEffect(()=> {
+    props.updateWorkspace(currentWorkspace);
+  }, [currentWorkspace]);
 
-    function addNote(note, event) {
-      setNotes((prevValues) => {
-        return [...prevValues, note];
-      });
-    }
+  function addNote(note, event) {
+    event.preventDefault(); 
+    setCurrentWorkspace((prevValues)=>{
+      return {...prevValues, noteSet: currentWorkspace.noteSet.concat(note)}
+    });
+  }
 
-    function editNote(noteId) {
-      console.log("To be completed!");
-    }
-  
-    function deleteNote(noteId) {
-      const set = currentWorkspace.noteSet;
+  function editNote(noteId) {
+    console.log("To be completed!");
+  }
 
-      setCurrentWorkspace((prevValues)=> {
-        return {...prevValues, noteSet: set.filter((note, index) => noteId !== index)}
-      });
-    }
+  function deleteNote(noteId) {
+    const set = currentWorkspace.noteSet;
+
+    setCurrentWorkspace((prevValues)=> {
+      return {...prevValues, noteSet: set.filter((note, index) => noteId !== index)}
+    });
+  }
 
 
-    return (
-        <>
-            <div className="workspace">
-                {currentWorkspace.noteSet.map((note, index) => (
-                    <Note
-                        key={index}
-                        id={index}
-                        heading={note.heading}
-                        text={note.text}
-                        edit={editNote}
-                        delete={deleteNote}
-                    />
-                ))}
-            </div>
+  return (
+    <>
+      <div className="workspace">
+          {currentWorkspace.noteSet.map((note, index) => (
+              <Note
+                  key={index}
+                  id={index}
+                  heading={note.heading}
+                  text={note.text}
+                  edit={editNote}
+                  delete={deleteNote}
+              />
+          ))}
+      </div>
 
-            <CreateNote submitNote={addNote}/>
-        </>
-    );
+      <CreateNote submitNote={addNote}/>
+    </>
+  );
 }
 
 export default Workspace;

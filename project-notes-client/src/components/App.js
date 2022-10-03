@@ -50,10 +50,11 @@ function App() {
     });
   }
 
-  function updateWorkspace(workspaceid, newNoteSet) {
+  function updateWorkspace(currentWorkspace) {
     const newState = workspace.map(workspaceObj => {
-      if (workspaceObj.id === workspaceid) {
-        return {...workspaceObj, noteSet: newNoteSet};
+      if (workspaceObj.id === currentWorkspace.id) {
+        console.log("Entered!");
+        return {...workspaceObj, noteSet: currentWorkspace.noteSet};
       }
       return workspaceObj;
     });
