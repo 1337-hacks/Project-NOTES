@@ -1,0 +1,105 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+  
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+header {
+    background-color: #9cd2f7;
+    margin: auto -16px;
+    padding: 16px 32px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+footer p {
+    color: #ccc;
+}
+
+.addButton {
+    position: fixed;
+    right:5%;
+    bottom:5%;
+    z-index: 2;
+}
+
+.create {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10% 10%;
+    top: 0;
+    left: 0;
+    background: rgba(50, 50, 50, 0.85);
+    z-index: 1;
+}
+
+.note {
+    padding: 12px 12px;
+    float: left;
+    border-radius: 7px;
+}
+
+.workspace {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(250, 235, 215);
+}
+
+.loadingBody {
+    height: 100vh;
+    padding: 20%;
+    text-align: center;
+    background-color: rgb(196, 181, 161);
+}
+
+.verticalNavbar {
+    position: fixed;
+    top: 50%;
+    left: -5px;
+    z-index: 2;
+}
+
+.workspaceHeader {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgb(184, 172, 157);
+}
+
+.dark {
+    background-color: #292929;
+    color: rgb(146, 155, 163);
+}
+
+#dark-form .form-control {
+    background-color: #292929;
+    border-color: #202020;
+    color:rgb(146, 155, 163);
+}
+
+#ws-btn {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#ws-dropdown {
+    border-radius: 0px 5px 5px 0px;
+}
