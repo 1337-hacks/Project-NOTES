@@ -72,7 +72,7 @@ function App() {
   
   return (
     <div>
-      <Header 
+      {/* <Header 
         currentWorkspace={currentWSName} 
         workspaces={workspace} 
         openWorkspace={openWorkspace} 
@@ -100,7 +100,7 @@ function App() {
 
       <Button onClick={() => console.log(workspace)}>View Workspaces</Button>
       <Button onClick={() => console.log(currentWS)}>View current workspace</Button>
-      <Button onClick={() => setRenderWorkspace(true)}>Render workspace</Button>
+      <Button onClick={() => setRenderWorkspace(true)}>Render workspace</Button> */}
 
       <Footer/>
     </div>
